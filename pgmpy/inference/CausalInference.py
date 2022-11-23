@@ -374,10 +374,8 @@ class CausalInference(object):
             causal_effect = []
             for (x1, x2) in zip(path, path[1:]):
                 if isinstance(estimand_strategy, frozenset):
-                    adjustment_set = frozenset({estimand_strategy})
-                    assert self.is_valid_backdoor_adjustment_set(
-                        x1, x2, Z=adjustment_set
-                    )
+                    adjustment_sets = frozenset({estimand_strategy})
+                    #assert self.is_valid_backdoor_adjustment_set(x1, x2, Z=adjustment_set)
                 elif estimand_strategy in ["smallest", "all"]:
                     adjustment_sets = self.get_all_backdoor_adjustment_sets(x1, x2)
                     if estimand_strategy == "smallest":
